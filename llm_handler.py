@@ -47,4 +47,4 @@ class LLMHandler:
             temperature=self.temperature
         )
 
-        return response["choices"][0]["text"].strip()
+        return response
