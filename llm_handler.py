@@ -4,7 +4,7 @@ from llama_cpp import Llama
 from langchain.prompts import PromptTemplate
 
 class LLMHandler:
-    def __init__(self, repo_id: str, filename: str, max_tokens: int = 512, temperature: float = 0.7):
+    def __init__(self, repo_id: str, filename: str, max_tokens: int, temperature: float):
 
         self.model_path = self.download_model(repo_id, filename)
         self.model = Llama(model_path=self.model_path)
