@@ -1,27 +1,22 @@
+import os
+from huggingface_hub import hf_hub_download
 from llama_cpp import Llama
 from langchain.prompts import PromptTemplate
 
 class LLMHandler:
-    def __init__(self, model_path: str, max_tokens: int = 512, temperature: float = 0.7):
-        """
-        Initializes the Llama model.
-        
-        :param model_path: Path to the GGUF model file.
-        :param max_tokens: Maximum number of tokens to generate.
-        :param temperature: Sampling temperature for randomness in output.
-        """
-        self.model = Llama(model_path=model_path)
+    def __init__(self, hf_model_path: str, max_tokens: int = 512, temperature: float = 0.7):
+
+        self.model_path = self.download_model(hf_model_path)
+        self.model = Llama(model_path=self.model_path)
         self.max_tokens = max_tokens
         self.temperature = temperature
         self.template = "What is the capital of {country}?"
 
-    def generate_response(self, country: str) -> str:
-        """
-        Formats the prompt, runs inference, and returns the response.
+    def download_model(self, repo_id: str, filename: str = "model.gguf") -> str:
+        model_path = hf_hub_download(repo_id=repo_id, filename=filename)
+        return model_path
 
-        :param country: The country to ask about.
-        :return: The model's response as a string.
-        """
+    def generate_response(self, country: str) -> str:
         # Format the prompt
         prompt_template = PromptTemplate.from_template(self.template)
         prompt = prompt_template.format(country=country)
