@@ -1,0 +1,4 @@
+easyocr
+huggingface_hub
+langchain
+llama-cpp-python==0.1.78
