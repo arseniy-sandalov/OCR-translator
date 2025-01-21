@@ -11,7 +11,17 @@ class LLMHandler:
         self.max_tokens = max_tokens
         self.temperature = temperature
         self.template = """
-            You are an expert in text correction and OCR post-processing. You will receive an array of words extracted from an image using OCR. Your task is to correct any spelling mistakes and adjust the words based on the given product description. If two or more words should be combined to form a meaningful term, merge and correct them accordingly. Only output the corrected words, separated by commas, without any explanations or extra formatting.
+            You are an expert in text correction and OCR post-processing. You will receive an array of words extracted from an image using OCR. Your task is to correct any spelling mistakes and adjust the words based on the given product description. If two or more words should be combined to form a meaningful term, merge and correct them accordingly.
+
+            Even if you cannot confidently fix a word, output it in the same position as it was. The output sequence must contain the same number of words as the input sequence.
+
+            Only output the corrected OCR words, separated by commas, without any explanations or extra formatting.
+
+            Example:
+
+                Product Description: "Chocolate-flavored protein bar"
+                OCR Extracted Words: ["asd", "Choco", "late", "flavur", "protien", "br", "dsafsdf12"]
+                Output: "asd", "Chocolate", "flavor", "protein", "bar", "dsafsdf12"
 
             Product Description: {product_description}
             OCR Extracted Words: {ocr_words}
