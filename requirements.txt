@@ -1,4 +1,3 @@
 easyocr
 huggingface_hub
 langchain
-llama-cpp-python
