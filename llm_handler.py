@@ -11,22 +11,24 @@ class LLMHandler:
         self.max_tokens = max_tokens
         self.temperature = temperature
         self.template = """
-            You are an expert in text correction and OCR post-processing. You will receive an array of words extracted from an image using OCR. Your task is to correct any spelling mistakes and adjust the words based on the given product description. If two or more words should be combined to form a meaningful term, merge and correct them accordingly.
+            You are an expert in spelling correction and OCR post-processing. You will receive a single word extracted from an image using OCR. Your task is to correct its spelling.
 
-            Even if you cannot confidently fix a word, output it in the same position as it was. The output sequence must contain the same number of words as the input sequence.
+                If the word is misspelled, correct it.
+                If you are unsure about the correct spelling, refer to the product description for context.
+                If you still cannot determine the correct spelling, output the word as it is.
 
-            Only output the corrected OCR words, separated by commas, without any explanations or extra formatting.
+            Only output the corrected word without any explanations or extra formatting.
 
             Example:
 
                 Product Description: "Chocolate-flavored protein bar"
-                OCR Extracted Words: ["asd", "Choco", "late", "flavur", "protien", "br", "dsafsdf12"]
-                Output: "asd", "Chocolate", "flavor", "protein", "bar", "dsafsdf12"
+                OCR Extracted Word: "protien"
+                Output: "protein"
 
             Product Description: {product_description}
-            OCR Extracted Words: {ocr_words}
+            OCR Extracted Word: {ocr_word}
 
-            Output the corrected words in a comma-separated format.
+            Output the corrected word.
             """
 
     def download_model(self, repo_id: str, filename: str) -> str:
