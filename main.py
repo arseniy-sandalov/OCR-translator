@@ -1,8 +1,9 @@
 from llm_handler import LLMHandler
 
-HF_MODEL_PATH = "/QuantFactory/Dolphin3.0-Llama3.2-1B-GGUF/blob/main/Dolphin3.0-Llama3.2-1B.Q4_K_M.gguf"
+REPO_ID = "QuantFactory/Dolphin3.0-Llama3.2-1B-GGUF"
+FILENAME = "Dolphin3.0-Llama3.2-1B.Q4_K_M.gguf"
 def main():
-    llm = LLMHandler(hf_model_path=HF_MODEL_PATH)
+    llm = LLMHandler(repo_id=REPO_ID, filename=FILENAME)
 
     # Call LLM and get response
     response = llm.generate_response(country="France")
