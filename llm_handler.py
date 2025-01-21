@@ -10,7 +10,7 @@ class LLMHandler:
             huggingfacehub_api_token=hf_api_token
         )
         self.template = """
-            You are an expert in spelling correction and OCR post-processing. Your task is to correct the spelling of the word according to the product description. Here is the project description: {product_description} and the word: {ocr_word}. Output ONLY the corrected word.
+            Вы эксперт по исправлению орфографии и постобработке OCR. Ваша задача — исправить орфографию слова. Вот слово: {ocr_word}. Выведите ТОЛЬКО исправленное слово!.
             """
 
     def generate_response(self, product_description: str, ocr_word: str) -> str:
