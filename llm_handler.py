@@ -10,7 +10,14 @@ class LLMHandler:
         self.model = Llama(model_path=self.model_path)
         self.max_tokens = max_tokens
         self.temperature = temperature
-        self.template = "What is the capital of {country}?"
+        self.template = """
+            You are an expert in text correction and OCR post-processing. You will receive an array of words extracted from an image using OCR. Your task is to correct any spelling mistakes and adjust the words based on the given product description. If two or more words should be combined to form a meaningful term, merge and correct them accordingly. Only output the corrected words, separated by commas, without any explanations or extra formatting.
+
+            Product Description: {product_description}
+            OCR Extracted Words: {ocr_words}
+
+            Output the corrected words in a comma-separated format.
+            """
 
     def download_model(self, repo_id: str, filename: str) -> str:
         model_path = hf_hub_download(repo_id=repo_id, filename=filename)
