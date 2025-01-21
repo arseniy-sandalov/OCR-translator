@@ -1,6 +1,6 @@
 from llm_handler import LLMHandler
 
-HF_MODEL_PATH = "unsloth/Llama-3.2-1B-bnb-4bit"
+HF_MODEL_PATH = "/QuantFactory/Dolphin3.0-Llama3.2-1B-GGUF/blob/main/Dolphin3.0-Llama3.2-1B.Q4_K_M.gguf"
 def main():
     llm = LLMHandler(hf_model_path=HF_MODEL_PATH)
 
