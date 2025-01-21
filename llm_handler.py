@@ -23,10 +23,10 @@ class LLMHandler:
         model_path = hf_hub_download(repo_id=repo_id, filename=filename)
         return model_path
 
-    def generate_response(self, country: str) -> str:
+    def generate_response(self, product_description: str, ocr_words: str) -> str:
         # Format the prompt
         prompt_template = PromptTemplate.from_template(self.template)
-        prompt = prompt_template.format(country=country)
+        prompt = prompt_template.format(product_description=product_description, ocr_words=ocr_words)
 
         # Generate response from LLM
         response = self.model(
