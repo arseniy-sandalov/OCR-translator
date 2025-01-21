@@ -11,24 +11,7 @@ class LLMHandler:
         self.max_tokens = max_tokens
         self.temperature = temperature
         self.template = """
-            You are an expert in spelling correction and OCR post-processing. You will receive a single word extracted from an image using OCR. Your task is to correct its spelling.
-
-                If the word is misspelled, correct it.
-                If you are unsure about the correct spelling, refer to the product description for context.
-                If you still cannot determine the correct spelling, output the word as it is.
-
-            Only output the corrected word without any explanations or extra formatting.
-
-            Example:
-
-                Product Description: "Chocolate-flavored protein bar"
-                OCR Extracted Word: "protien"
-                Output: "protein"
-
-            Product Description: {product_description}
-            OCR Extracted Word: {ocr_word}
-
-            Output the corrected word.
+            You are an expert in spelling correction and OCR post-processing. Your task is to correct the spelling of the word according to the product description. Here is the project description: {product_description} and the word: {ocr_word} Output ONLY the corrected word.
             """
 
     def download_model(self, repo_id: str, filename: str) -> str:
