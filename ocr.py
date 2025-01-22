@@ -45,7 +45,7 @@ def blur_text_regions(image_path, text_boxes, blur_strength=(15, 15)):
     
     return image
 
-def draw_text(image, text, coordinates, font_path="NotoSerifGeorgian-VariableFont_wdth,wght.ttf"):
+def draw_text(image, text, coordinates, font_path):
     x_min = int(min(pt[0] for pt in coordinates))  
     y_min = int(min(pt[1] for pt in coordinates))  
     x_max = int(max(pt[0] for pt in coordinates))  
@@ -71,4 +71,4 @@ def draw_text(image, text, coordinates, font_path="NotoSerifGeorgian-VariableFon
 
     draw.text((center_x, center_y), text, fill=inverse_color, font=font, anchor="mm")
 
-    return cv2.cvtColor(np.array(img_pil), cv2.COLOR_RGB2BGR)
+    return np.array(img_pil)
