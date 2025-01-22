@@ -2,7 +2,7 @@ import spellchecker
 import ocr
 from translate import Translator
 
-def run_pipeline():
+def run_pipeline(image_path):
     extracted_data=ocr.read_text(image_path)
     for item in extracted_data:
         words = [item['text'] for item in extracted_data]
