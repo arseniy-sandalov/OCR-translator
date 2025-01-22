@@ -1,3 +1,4 @@
 easyocr
 huggingface_hub
 langchain
+jamspell
