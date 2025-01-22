@@ -1,4 +1,4 @@
-from llm_handler import LLMHandler
+from spellchecker import LLMHandler
 
 REPO_ID = "QuantFactory/Dolphin3.0-Llama3.2-1B-GGUF"
 FILENAME = "Dolphin3.0-Llama3.2-1B.Q4_K_M.gguf"
