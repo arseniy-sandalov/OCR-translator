@@ -21,7 +21,7 @@ def run_pipeline(image_path, font_path):
     blurred_image = ocr.blur_text_regions(image_path, extracted_data, blur_strength=(99, 99))
 
     for box in extracted_data:
-        output_image = ocr.draw_text(blurred_image, box['text'], box['coordinates'], font_path)
+        blurred_image = ocr.draw_text(blurred_image, box['text'], box['coordinates'], font_path)
 
-    return output_image
+    return blurred_image
 
