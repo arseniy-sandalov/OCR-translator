@@ -2,3 +2,5 @@ easyocr
 huggingface_hub
 langchain
 jamspell
+gradio
+translate
