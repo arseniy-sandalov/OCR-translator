@@ -2,7 +2,7 @@ import spellchecker as sc
 import ocr
 from translate import Translator
 
-def run_pipeline(image_path):
+def run_pipeline(image_path, font_path):
     extracted_data=ocr.read_text(image_path)
     for item in extracted_data:
         words = [item['text'] for item in extracted_data]
@@ -21,7 +21,7 @@ def run_pipeline(image_path):
     blurred_image = ocr.blur_text_regions(image_path, extracted_data, blur_strength=(99, 99))
 
     for box in extracted_data:
-        output_image = ocr.draw_text(blurred_image, box['text'], box['coordinates'])
+        output_image = ocr.draw_text(blurred_image, box['text'], box['coordinates'], font_path)
 
     return output_image
 
