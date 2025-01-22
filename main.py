@@ -1,4 +1,4 @@
-import spellchecker
+import spellchecker as sc
 import ocr
 from translate import Translator
 
@@ -9,7 +9,7 @@ def run_pipeline(image_path):
     
     fixed_words = []
     for word in words:
-        fixed_word = fix_spelling(word)
+        fixed_word = sc.fix_spelling(word)
         fixed_words.append(fixed_word)
 
     translator = Translator(from_lang="ru", to_lang="ka")
@@ -18,10 +18,10 @@ def run_pipeline(image_path):
     for i in extracted_data:
         i['text'] = translated_words[words.index(i['text'])]
 
-    blurred_image = blur_text_regions(image_path, extracted_data, blur_strength=(99, 99))
+    blurred_image = ocr.blur_text_regions(image_path, extracted_data, blur_strength=(99, 99))
 
     for box in extracted_data:
-        output_image = draw_text(blurred_image, box['text'], box['coordinates'])
+        output_image = ocr.draw_text(blurred_image, box['text'], box['coordinates'])
 
     return output_image
 
