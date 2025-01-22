@@ -1,6 +1,8 @@
 import easyocr
 import cv2
 import numpy as np
+from PIL import Image, ImageDraw, ImageFont
+
 
 def read_text(image_path):
     reader = easyocr.Reader(['ru'])  
