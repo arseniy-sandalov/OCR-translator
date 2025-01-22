@@ -1,4 +1,4 @@
-import gradio_interface as gr
+import gradio as gr
 import main
 
 interface = gr.Interface(
